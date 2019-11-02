@@ -1,7 +1,9 @@
 <template>
-  <div id="ListView">
-    <div v-for="(value, key) in list" v-bind:key="key">
-      {{ value }}
+  <div id="ListView" class="row py-2 px-3 m-0">
+    <div v-for="(value, key) in list" v-bind:key="key" class="col-12">
+      <md-button class="col-12 my-2 mx-0 rounded-pill p-text p-l">
+        {{ value }}
+      </md-button>
     </div>
   </div>
 </template>
