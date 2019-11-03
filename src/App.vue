@@ -38,6 +38,10 @@ export default class App extends Vue {
   }
   updated() {
     console.log("updated");
+    this.displayThemeChanger = this.$route.meta.displayThemeChanger !== false;
+  }
+  beforeDestroy() {
+    console.log("beforeDestroy");
   }
   destroyed() {
     console.log("destroyed");

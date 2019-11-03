@@ -1,7 +1,7 @@
 <template>
   <div id="Form" class="row flex-column align-items-center p-text">
     <span>Multiline message is:</span>
-    <p class="text-wrap">{{ form.data }}</p>
+    <p class="text-wrap">{{ dataComputed }}</p>
     <br />
     <input v-model="form.data" placeholder="edit me" class="fullWidth" />
     <br />
@@ -90,6 +90,9 @@ export default class Form extends Vue {
     selected: "",
     selected_m: []
   };
+  get dataComputed() {
+    return this.form.data;
+  }
   @Watch("form.data")
   dataWatch(value: string) {
     console.log(value);
