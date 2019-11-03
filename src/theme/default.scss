@@ -1,9 +1,8 @@
+@mixin color-transition {
+  transition: color 300ms linear;
+}
 .theme-default {
   background-color: #000000;
-  * {
-    color: rgba($color: #ffffff, $alpha: 0.8);
-    transition: color 300ms linear;
-  }
 
   .p {
     background-color: #5b5555;
@@ -15,7 +14,8 @@
     background-color: #423e3e;
   }
   .p-text {
-    color: #ffffff;
+    @include color-transition;
+    color: rgba($color: #ffffff, $alpha: 0.8);
   }
 
   .s {
@@ -28,6 +28,7 @@
     background-color: #a30000;
   }
   .s-text {
+    @include color-transition;
     color: #ffffff
   }
 }

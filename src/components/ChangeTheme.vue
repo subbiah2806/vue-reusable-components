@@ -1,6 +1,6 @@
 <template>
   <div id="ChangeTheme">
-    <button class="theme-button s" v-on:click="changeTheme">
+    <button class="theme-button s" @click="changeTheme">
       <div class="current-theme p rounded-circle"></div>
     </button>
   </div>
@@ -12,7 +12,8 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 @Component
 export default class ChangeTheme extends Vue {
   listOfThemes = ["default", "deep-purple"];
-  @Emit("updated:theme") emit(theme: string) {
+  @Emit("updated:theme")
+  emit(theme: string) {
     console.log("finishes function then emits");
   }
   changeTheme = () => {

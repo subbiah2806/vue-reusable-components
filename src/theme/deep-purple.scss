@@ -1,9 +1,8 @@
+@mixin color-transition {
+  transition: color 300ms linear;
+}
 .theme-deep-purple {
   background-color: #E1E2E1;
-  * {
-    color: #000000;
-    transition: color 300ms linear;
-  }
 
   .p {
     background-color: #b388ff;
@@ -15,7 +14,8 @@
     background-color: #805acb;
   }
   .p-text {
-    color: #6b2c2c;
+    @include color-transition;
+    color: #000000;
   }
 
   .s {
@@ -28,6 +28,7 @@
     background-color: #000000;
   }
   .s-text {
+    @include color-transition;
     color: #ffffff;
   }
 }

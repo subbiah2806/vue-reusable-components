@@ -1,20 +1,26 @@
 <template>
-  <div id="Home" class="row justify-content-around">
-    <ListView :list="this.list" class="col-md-4 col-sm-12" />
-    <div class="col-md-4 text-center align-self-center" @click="goto">
-      asadasa
+  <div id="Home">
+    <div class="row col-12 m-0 p-0 justify-content-around">
+      <ListView :list="this.list" class="col-md-4 col-sm-12 col-12" />
+      <div class="col-md-4 text-center align-self-center p-text" @click="goto">
+        asadasa
+      </div>
+      <ListView :list="this.list2" class="col-md-4 col-sm-12" />
     </div>
-    <ListView :list="this.list2" class="col-md-4 col-sm-12" />
+    <div class="row col-12 p-0 m-0 justify-content-center">
+      <Form class="col-md-4 col-sm-8 col-8" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import ListView from "@/components/ListView.vue";
-
+import Form from "@/examples/Form.vue";
 @Component({
   components: {
-    ListView
+    ListView,
+    Form
   }
 })
 export default class Home extends Vue {

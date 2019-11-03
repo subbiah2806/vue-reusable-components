@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <router-view />
-    <ChangeTheme v-if="displayThemeChanger" v-on:updated:theme="currentTheme" />
+    <ChangeTheme v-if="displayThemeChanger" @updated:theme="currentTheme" />
   </div>
 </template>
 
