@@ -14,30 +14,33 @@
     </p>
     <br />Press any link to continue
     <div class="menu">
-      <a class="aTagButton" href="/">
-        <div class="textDefaultFormat">Home</div>
+      <a href="/">
+        <div>Home</div>
       </a>
-      <a class="aTagButton" href="/">
-        <div class="textDefaultFormat">go-back</div>
+      <a href="javascript:;" @click="$router.go(-1)">
+        <div>go-back</div>
       </a>
     </div>
   </div>
 </template>
 <script>
-export default {
-  name: "pageNotFound",
+import { Component, Vue, Prop } from "vue-property-decorator";
+export default class App extends Vue {
   mounted() {
     document.addEventListener("keypress", e => {
       e = e || window.event;
       if (e.shiftKey && e.key === "B") {
-        window.location = window.location.origin;
+        this.$router.push("");
       }
     });
   }
-};
+}
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 #pageNotFound {
+  * {
+    color: white;
+  }
   padding: 20vh 10vw;
   height: 100vh;
   width: 100vw;

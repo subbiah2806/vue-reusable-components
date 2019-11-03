@@ -7,12 +7,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 
 @Component
 export default class ChangeTheme extends Vue {
-  private listOfThemes = ["default", "deep-purple"];
-  private changeTheme = () => {
+  listOfThemes = ["default", "deep-purple"];
+  @Emit("updated:theme") emit(theme: string) {
+    console.log("finishes function then emits");
+  }
+  changeTheme = () => {
     const currentThemeIndex = this.listOfThemes.findIndex(
       theme => theme === this.$store.getters.getTheme
     );
@@ -21,6 +24,7 @@ export default class ChangeTheme extends Vue {
         ? 0
         : currentThemeIndex + 1;
     this.$store.dispatch("setTheme", this.listOfThemes[setTheme]);
+    this.emit(this.listOfThemes[setTheme]);
   };
 }
 </script>

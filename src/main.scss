@@ -2,8 +2,7 @@
 @import "./theme/deep-purple.scss";
 
 body[class*="theme"] {
-  transition: color 500ms linear;
-  transition-property: background-color, color;
+  transition: background-color 300ms linear;
 };
 .container-fluid {
   margin: 0;

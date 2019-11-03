@@ -1,17 +1,18 @@
 .theme-default {
   background-color: #000000;
   * {
-    color: #ffffff;
+    color: rgba($color: #ffffff, $alpha: 0.8);
+    transition: color 300ms linear;
   }
 
   .p {
-    background-color: #757575;
+    background-color: #5b5555;
   }
   .p-l {
-    background-color: #a4a4a4;
+    background-color: #7e7575;
   }
   .p-d {
-    background-color: #494949;
+    background-color: #423e3e;
   }
   .p-text {
     color: #ffffff;
