@@ -1,109 +1,85 @@
 <template>
-  <div id="Form" class="row flex-column align-items-center p-text text-break">
-    <span>Multiline message is:</span>
-    <p>{{ dataComputed }}</p>
-    <input
-      v-model="form.data"
-      placeholder="edit me"
-      class="fullWidth border-0 rounded"
+  <form
+    id="Form"
+    @submit.prevent="checkForm"
+    class="row flex-column align-items-center text-break"
+  >
+    <VueInput label="input" v-model="form.input" />
+    <VueCheckbox label="checkbox" info="true/false" v-model="form.checkbox" />
+    <VueCheckbox
+      label="multiSelect"
+      info="select multi"
+      v-model="form.multiCheckbox"
+      :options="['jack', 'john', 'mike']"
     />
-    <br />
-    <br />
-    <br />
-
-    <div>
-      <input type="checkbox" id="checkbox" v-model="form.checked" />
-      <label for="checkbox">{{ form.checked }}</label>
-      <br />
-      <br />
-    </div>
-
-    <div>
-      <input
-        type="checkbox"
-        id="jack"
-        value="Jack"
-        v-model="form.checkedNames"
-      />
-      <label for="jack">Jack</label>
-      <input
-        type="checkbox"
-        id="john"
-        value="John"
-        v-model="form.checkedNames"
-      />
-      <label for="john">John</label>
-      <input
-        type="checkbox"
-        id="mike"
-        value="Mike"
-        v-model="form.checkedNames"
-      />
-      <label for="mike">Mike</label>
-    </div>
-    <span>Checked names: {{ form.checkedNames }}</span>
-    <br />
-    <br />
-
-    <div>
-      <input type="radio" id="one" value="One" v-model="form.picked" />
-      <label for="one">One</label>
-      <br />
-      <input type="radio" id="two" value="Two" v-model="form.picked" />
-      <label for="two">Two</label>
-    </div>
-    <span>Picked: {{ form.picked }}</span>
-    <br />
-    <br />
-
-    <div></div>
-
-    <select v-model="form.selected" class="fullWidth border-0 rounded">
-      <option disabled value="">Please select one</option>
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-    </select>
-    <br />
-    <span>Selected: {{ form.selected }}</span>
-    <br />
-    <br />
-
-    <select v-model="form.selected_m" multiple>
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-    </select>
-    <br />
-    <span>Selected: {{ form.selected_m }}</span>
-    <br />
-    <br />
-  </div>
+    <VueRadio
+      label="radio button"
+      info="select one"
+      v-model="form.radio"
+      :options="['one', 'two']"
+    />
+    <VueSelect
+      label="dropdown"
+      :options="['A', 'B', 'C']"
+      v-model="form.dropdown"
+    />
+    <VueSelect
+      label="dropdown"
+      :options="['A', 'B', 'C']"
+      v-model="form.multiDropdown"
+      :multiple="true"
+    />
+    <VueSwitch label="switch" info="click" v-model="form.switch" />
+    <md-card-actions>
+      <md-button type="submit" class="md-accent rounded-pill md-raised"
+        >SUBMIT</md-button
+      >
+    </md-card-actions>
+  </form>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import {
+  VueInput,
+  VueCheckbox,
+  VueRadio,
+  VueSelect,
+  VueSwitch
+} from "../components/forms/index";
 
-@Component
+@Component({
+  components: {
+    VueInput,
+    VueCheckbox,
+    VueRadio,
+    VueSelect,
+    VueSwitch
+  }
+})
 export default class Form extends Vue {
   form = {
-    data: "pre",
-    checked: false,
-    checkedNames: [],
-    picked: "",
-    selected: "",
-    selected_m: []
+    input: "",
+    checkbox: "",
+    multiCheckbox: ["jack", "john"],
+    radio: "one",
+    dropdown: "",
+    multiDropdown: [],
+    switch: true
   };
   get dataComputed() {
-    return this.form.data;
+    return this.form.input;
   }
-  @Watch("form.data")
+  @Watch("form.checkbox")
   dataWatch(value: string) {
     console.log(value);
   }
   @Watch("form.checked")
   checkedWatch(value: boolean) {
     console.log(value);
+  }
+  checkForm() {
+    console.log("submitted", this.form);
   }
 }
 </script>

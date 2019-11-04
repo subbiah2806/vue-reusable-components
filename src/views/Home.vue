@@ -2,9 +2,9 @@
   <div id="Home">
     <div class="row col-12 m-0 p-0 justify-content-around">
       <ListView :list="this.list" class="col-md-4 col-sm-12 col-12" />
-      <div class="col-md-4 text-center align-self-center p-text" @click="goto">
-        asadasa
-      </div>
+      <p class="col-md-4 text-center align-self-center p-text" @click="goto">
+        page not found
+      </p>
       <ListView :list="this.list2" class="col-md-4 col-sm-12" />
     </div>
     <div
@@ -40,7 +40,7 @@ export default class Home extends Vue {
 .sticky {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 998;
 }
 .scroll {
   height: 400vh;

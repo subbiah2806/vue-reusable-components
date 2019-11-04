@@ -1,34 +1,58 @@
 @mixin color-transition {
   transition: color 300ms linear;
 }
+$background: #E1E2E1;
+
+$primary: #b388ff;
+$primary_light: #e7b9ff;
+$priamry_dark: #805acb;
+$primary_text: #000000;
+
+$secondary: #000000;
+$secondary_light: #2c2c2c;
+$secondary_dark: #000000;
+$secondary_text: #ffffff;
 .theme-deep-purple {
-  background-color: #E1E2E1;
+  @import "~vue-material/dist/theme/engine";
+  @include md-register-theme("default", (
+    theme: light
+  ));
+  @import "~vue-material/dist/theme/all";
+  label {
+    @include color-transition;
+    color: black;
+  }
+  p {
+    @include color-transition;
+    color: $primary_text;
+  }
+  .md-button{
+    background-color: $primary !important;
+  }
+
+  background-color: $background;
 
   .p {
-    background-color: #b388ff;
+    background-color: $primary;
   }
   .p-l {
-    background-color: #e7b9ff;
+    background-color: $primary_light;
   }
   .p-d {
-    background-color: #805acb;
-  }
-  .p-text {
-    @include color-transition;
-    color: #000000;
+    background-color: $priamry_dark;
   }
 
   .s {
-    background-color: #000000;
+    background-color: $secondary;
   }
   .s-l {
-    background-color: #2c2c2c;
+    background-color: $secondary_light;
   }
   .s-d {
-    background-color: #000000;
+    background-color: $secondary_dark;
   }
   .s-text {
     @include color-transition;
-    color: #ffffff;
+    color: $secondary_text;
   }
 }

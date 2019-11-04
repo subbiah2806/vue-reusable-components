@@ -4,3 +4,33 @@
 body[class*="theme"] {
   transition: background-color 300ms linear;
 };
+
+.fullWidth {
+  width: 100%
+}
+
+.customMdForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0 24px 0;
+  > p {
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 8px;
+    padding-right: 3px;
+  }
+  > code {
+    height: 100%;
+    font-size: 16px;
+    padding-right: 10px;
+    margin-bottom: 8px;
+  }
+  .mdElem {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

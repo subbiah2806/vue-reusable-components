@@ -3,7 +3,7 @@
     <md-button
       v-for="(value, key) in list"
       v-bind:key="key"
-      class="col-12 my-2 mx-0 rounded-pill p-text p"
+      class="col-12 my-2 mx-0 rounded-pill md-raised"
     >
       {{ value }}
     </md-button>
