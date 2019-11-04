@@ -1,5 +1,5 @@
 <template>
-  <div id="VueRadio" class="fullWidth customMdForm">
+  <div class="fullWidth customMdForm">
     <p>{{ label }}:</p>
     <code>{{ info }}</code>
     <div class="mdElem">

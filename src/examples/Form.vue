@@ -4,7 +4,13 @@
     @submit.prevent="checkForm"
     class="row flex-column align-items-center text-break"
   >
-    <VueInput label="input" v-model="form.input" />
+    <VueInput
+      label="input"
+      v-model="form.input"
+      :required="true"
+      :password="true"
+    />
+    <md-divider></md-divider>
     <VueCheckbox label="checkbox" info="true/false" v-model="form.checkbox" />
     <VueCheckbox
       label="multiSelect"
@@ -24,7 +30,7 @@
       v-model="form.dropdown"
     />
     <VueSelect
-      label="dropdown"
+      label="multi-dropdown"
       :options="['A', 'B', 'C']"
       v-model="form.multiDropdown"
       :multiple="true"

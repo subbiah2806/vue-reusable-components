@@ -11,13 +11,10 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 
 @Component
 export default class ChangeTheme extends Vue {
-  listOfThemes = ["default", "deep-purple"];
+  listOfThemes = ["black", "deep-purple", "default"];
   @Emit("updated:theme")
   emit(theme: string) {
     console.log("finishes function then emits");
-  }
-  mounted() {
-    this.$store.dispatch("setTheme", "default");
   }
   changeTheme() {
     const currentThemeIndex = this.listOfThemes.findIndex(

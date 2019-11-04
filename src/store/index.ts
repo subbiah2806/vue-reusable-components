@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    theme: ""
+    theme: "black"
   },
   getters: {
     getTheme: state => {

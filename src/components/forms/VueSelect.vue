@@ -1,11 +1,12 @@
 <template>
-  <md-field id="VueSelect" class="fullWidth">
-    <label for="dropdown">{{ label }}</label>
+  <md-field class="fullWidth">
+    <label :for="label">{{ label }}</label>
     <md-select
       v-model="inputValue"
       class="fullWidth border-0 rounded"
-      id="dropdown"
+      :id="label"
       :multiple="multiple"
+      :required="required"
     >
       <md-option
         v-for="(value, key) in options"
@@ -25,6 +26,7 @@ export default class VueInput extends Vue {
   @Prop({ required: true }) private label!: String;
   @Prop({ required: true }) private value!: string | string[];
   @Prop({ required: true }) private options!: Array<string>;
+  @Prop() private required!: boolean;
   @Prop() private multiple!: boolean;
   @Emit("input")
   setValue(val: string | string[]) {}
