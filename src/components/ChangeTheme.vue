@@ -16,7 +16,10 @@ export default class ChangeTheme extends Vue {
   emit(theme: string) {
     console.log("finishes function then emits");
   }
-  changeTheme = () => {
+  mounted() {
+    this.$store.dispatch("setTheme", "default");
+  }
+  changeTheme() {
     const currentThemeIndex = this.listOfThemes.findIndex(
       theme => theme === this.$store.getters.getTheme
     );
@@ -26,7 +29,7 @@ export default class ChangeTheme extends Vue {
         : currentThemeIndex + 1;
     this.$store.dispatch("setTheme", this.listOfThemes[setTheme]);
     this.emit(this.listOfThemes[setTheme]);
-  };
+  }
 }
 </script>
 
