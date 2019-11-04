@@ -42,6 +42,7 @@ export default class App extends Vue {
     color: white;
   }
   padding: 20vh 10vw;
+  min-height: 550px;
   height: 100vh;
   width: 100vw;
   background: #0000aa;

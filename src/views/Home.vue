@@ -7,9 +7,13 @@
       </div>
       <ListView :list="this.list2" class="col-md-4 col-sm-12" />
     </div>
+    <div
+      class="sticky row col-12 py-2 p-0 m-0 justify-content-center p-l"
+    ></div>
     <div class="row col-12 p-0 m-0 justify-content-center">
       <Form class="col-md-4 col-sm-8 col-8" />
     </div>
+    <div class="scroll row col-12 p-0 m-0 justify-content-center p-text"></div>
   </div>
 </template>
 
@@ -32,4 +36,13 @@ export default class Home extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.scroll {
+  height: 400vh;
+}
+</style>

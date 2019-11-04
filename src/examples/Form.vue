@@ -1,9 +1,13 @@
 <template>
-  <div id="Form" class="row flex-column align-items-center p-text">
+  <div id="Form" class="row flex-column align-items-center p-text text-break">
     <span>Multiline message is:</span>
-    <p class="text-wrap">{{ dataComputed }}</p>
+    <p>{{ dataComputed }}</p>
+    <input
+      v-model="form.data"
+      placeholder="edit me"
+      class="fullWidth border-0 rounded"
+    />
     <br />
-    <input v-model="form.data" placeholder="edit me" class="fullWidth" />
     <br />
     <br />
 
@@ -54,7 +58,7 @@
 
     <div></div>
 
-    <select v-model="form.selected" class="fullWidth">
+    <select v-model="form.selected" class="fullWidth border-0 rounded">
       <option disabled value="">Please select one</option>
       <option>A</option>
       <option>B</option>

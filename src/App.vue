@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid p-0 m-0">
     <router-view />
     <ChangeTheme v-if="displayThemeChanger" @updated:theme="currentTheme" />
   </div>

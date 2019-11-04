@@ -33,6 +33,7 @@ export default class ChangeTheme extends Vue {
 <style scoped lang="scss">
 .theme-button {
   position: fixed;
+  z-index: 999;
   top: 40%;
   right: 0px;
   height: 3rem;
