@@ -1,7 +1,11 @@
 <template>
   <div class="container-fluid p-0 m-0">
     <router-view />
-    <ChangeTheme v-if="displayThemeChanger" @updated:theme="currentTheme" />
+    <ChangeTheme
+      v-if="displayThemeChanger"
+      @updated:theme="currentTheme"
+      @click.native="clicked"
+    />
   </div>
 </template>
 
@@ -48,6 +52,12 @@ export default class App extends Vue {
   }
   currentTheme(theme: string) {
     console.log("currentTheme got through event $emit", theme);
+  }
+  clicked(as: any) {
+    console.log(
+      "changetheme component does not have click event, but using .native to receive unemited event",
+      as
+    );
   }
 }
 </script>

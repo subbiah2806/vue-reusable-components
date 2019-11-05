@@ -9,6 +9,11 @@
       v-model="form.input"
       :required="true"
       :password="true"
+      :maxLength="10"
+      :minLength="3"
+      :pattern="/^([a-z0-9]{5,})$/"
+      :autogrow="true"
+      :customError="inputCustomError"
     />
     <md-divider></md-divider>
     <VueCheckbox label="checkbox" info="true/false" v-model="form.checkbox" />
@@ -86,6 +91,9 @@ export default class Form extends Vue {
   }
   checkForm() {
     console.log("submitted", this.form);
+  }
+  inputCustomError(val: string) {
+    return val.includes("please") ? "" : "please be polite";
   }
 }
 </script>
