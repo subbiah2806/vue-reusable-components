@@ -3,7 +3,11 @@
     <p>{{ label }}:</p>
     <code>{{ info }}</code>
     <div class="mdElem">
+      <md-checkbox v-if="!options" class="m-0 pr-2" v-model="inputValue">{{
+        inputValue
+      }}</md-checkbox>
       <md-checkbox
+        v-else
         class="m-0 pr-2"
         v-for="(value, key) in options"
         v-bind:key="key"
@@ -11,9 +15,6 @@
         :value="value"
         >{{ value }}</md-checkbox
       >
-      <md-checkbox v-if="!options" class="m-0 pr-2" v-model="inputValue">{{
-        [true, false].includes(inputValue) ? inputValue : "null"
-      }}</md-checkbox>
     </div>
   </div>
 </template>
@@ -34,6 +35,15 @@ export default class VueCheckbox extends Vue {
   }
   set inputValue(val) {
     this.setValue(val);
+  }
+  mounted() {
+    if (
+      !this.options &&
+      !Array.isArray(this.value) &&
+      ![true, false].includes(this.value)
+    ) {
+      this.inputValue = false;
+    }
   }
 }
 </script>

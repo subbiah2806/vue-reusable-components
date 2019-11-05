@@ -6,6 +6,9 @@
       v-model="inputValue"
       @blur="checkError"
       @input.native="checkError"
+      :required="required"
+      :maxlength="maxLength"
+      @invalid="checkError"
       :type="password ? 'password' : 'text'"
     ></md-input>
     <md-textarea
@@ -14,6 +17,9 @@
       v-model="inputValue"
       @blur="checkError"
       @input.native="checkError"
+      :required="required"
+      :maxlength="maxLength"
+      @invalid="checkError"
     ></md-textarea>
     <span v-if="hasError" class="md-error">{{ hasError }}</span>
   </md-field>
@@ -42,19 +48,25 @@ export default class VueInput extends Vue {
   set inputValue(val) {
     this.setValue(val);
   }
-  checkError($event: { target: HTMLInputElement }) {
+  checkError($event: { target: HTMLInputElement; type: string }) {
     const value: string = $event.target.value;
-    this.hasError =
-      this.required && !value
-        ? "This field is required"
-        : this.maxLength && value.length > this.maxLength
-        ? `please restrict your input tp ${this.maxLength} characters`
-        : this.minLength && value.length < this.minLength
-        ? `please enter minimum of ${this.minLength} characters`
-        : this.pattern && !this.pattern.test(value)
-        ? "pattern does not match"
-        : this.checkCustomError(value);
-    $event.target.setCustomValidity(this.hasError);
+    if (
+      !this.hasError ||
+      $event.type !== "blur" ||
+      ($event.type === "blur" && !this.hasError)
+    ) {
+      this.hasError =
+        this.required && !value
+          ? "This field is required"
+          : this.minLength && value.length < this.minLength
+          ? `please enter minimum of ${this.minLength} characters`
+          : this.pattern && !this.pattern.test(value)
+          ? "pattern does not match"
+          : this.checkCustomError(value);
+      if ($event.target.validationMessage !== this.hasError) {
+        $event.target.setCustomValidity(this.hasError);
+      }
+    }
   }
   checkCustomError(value: string) {
     return this.customError ? this.customError(value) : "";
