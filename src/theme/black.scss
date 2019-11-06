@@ -22,7 +22,7 @@ $secondary_text: #ffffff;
   @import "~vue-material/dist/theme/all";
   label {
     @include color-transition;
-    color: white
+    color: $primary_text
   }
   p {
     @include color-transition;

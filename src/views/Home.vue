@@ -15,6 +15,7 @@
       <Form class="col-md-4 col-sm-8 col-8" />
     </div>
     <div class="scroll row col-12 p-0 m-0 justify-content-center p-text"></div>
+    <ServiceCalls />
   </div>
 </template>
 
@@ -22,15 +23,33 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import ListView from "@/components/ListView.vue";
 import Form from "@/examples/Form.vue";
+import ServiceCalls from "@/examples/serviceCalls.vue";
+
 @Component({
   components: {
     ListView,
-    Form
+    Form,
+    ServiceCalls
   }
 })
 export default class Home extends Vue {
   private list = ["list1"];
   private list2 = ["sss", "aaaa1", "aaaa1"];
+  mounted() {
+    const getSum = (num: number): number => {
+      let sum: number = 0;
+      let deno: number;
+      Array(num)
+        .fill(0)
+        .forEach(() => {
+          deno = deno ? deno + 3 : 1;
+          sum += 1 / deno;
+          console.log(sum);
+        });
+      return sum;
+    };
+    console.log("getsum", getSum(6).toFixed(2));
+  }
 }
 </script>
 

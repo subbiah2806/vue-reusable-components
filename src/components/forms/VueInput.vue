@@ -63,9 +63,12 @@ export default class VueInput extends Vue {
           : this.pattern && !this.pattern.test(value)
           ? "pattern does not match"
           : this.checkCustomError(value);
-      if ($event.target.validationMessage !== this.hasError) {
-        $event.target.setCustomValidity(this.hasError);
-      }
+    }
+    const setError = ["invalid", "blur"].includes($event.type)
+      ? this.hasError
+      : "";
+    if ($event.target.validationMessage !== setError) {
+      $event.target.setCustomValidity(setError);
     }
   }
   checkCustomError(value: string) {
