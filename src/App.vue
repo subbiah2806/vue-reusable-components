@@ -1,11 +1,7 @@
 <template>
   <div class="container-fluid p-0 m-0">
     <router-view />
-    <ChangeTheme
-      v-if="displayThemeChanger"
-      @updated:theme="currentTheme"
-      @click.native="clicked"
-    />
+    <ChangeTheme v-if="displayThemeChanger" @updated:theme="currentTheme" />
   </div>
 </template>
 
@@ -24,40 +20,20 @@ export default class App extends Vue {
   onPropertyChanged(to: any, from: any) {
     // Do stuff with the watcher here.
   }
-  beforeCreate() {
-    console.log("beforeCreate");
-  }
-  created() {
-    console.log("created");
-  }
-  beforeMount() {
-    console.log("beforeMount");
-  }
+  beforeCreate() {}
+  created() {}
+  beforeMount() {}
   mounted() {
-    console.log("mounted");
     this.displayThemeChanger = this.$route.meta.displayThemeChanger !== false;
   }
-  beforeUpdate() {
-    console.log("beforeUpdate");
-  }
+  beforeUpdate() {}
   updated() {
-    console.log("updated");
     this.displayThemeChanger = this.$route.meta.displayThemeChanger !== false;
   }
-  beforeDestroy() {
-    console.log("beforeDestroy");
-  }
-  destroyed() {
-    console.log("destroyed");
-  }
+  beforeDestroy() {}
+  destroyed() {}
   currentTheme(theme: string) {
     console.log("currentTheme got through event $emit", theme);
-  }
-  clicked(as: any) {
-    console.log(
-      "changetheme component does not have click event, but using .native to receive unemited event",
-      as
-    );
   }
 }
 </script>

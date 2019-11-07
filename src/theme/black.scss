@@ -20,16 +20,21 @@ $secondary_text: #ffffff;
   ));
 
   @import "~vue-material/dist/theme/all";
-  label {
-    @include color-transition;
-    color: $primary_text
-  }
-  p {
+  // label {
+  //   @include color-transition;
+  //   color: $primary_text
+  // }
+  // p {
+  //   @include color-transition;
+  //   color: $primary_text;
+  // }
+
+  background-color: $background;
+
+  * {
     @include color-transition;
     color: $primary_text;
   }
-
-  background-color: $background;
 
   .p {
     background-color: $primary;
