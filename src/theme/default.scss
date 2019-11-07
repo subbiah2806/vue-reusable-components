@@ -2,6 +2,8 @@
   transition: color 300ms linear;
 }
 $primary: var(--md-theme-default-accent, #ff5252);
+$primary_light: #fa6f6f;
+$priamry_dark: #f72f2f;
 $secondary: #000000;
 
 .theme-default {
@@ -20,6 +22,13 @@ $secondary: #000000;
   .p {
     background-color: $primary;
   }
+  .p-h:hover {
+    background-color: $primary_light;
+  }
+  .p-d {
+    background-color: $priamry_dark;
+  }
+
   .s {
     background-color: $secondary;
   }

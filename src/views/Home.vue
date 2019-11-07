@@ -1,6 +1,6 @@
 <template>
   <div id="Home">
-    <header class="p"></header>
+    <header class="p-d"></header>
     <section class="main-section">
       <div class="left">
         <ul class="events">
@@ -18,13 +18,13 @@
         <div class="tabs">
           <ul>
             <li
-              class="li-tab-button"
+              class="p p-h"
               v-for="(value, key) in currentTabs"
               :key="key"
               @click="selectTab(value)"
             >
               <p class="overflow">{{ `Tabs of Event ${value + 1}` }}</p>
-              <button class="close" @click="removeTab(value)">+</button>
+              <button class="close" @click.stop="removeTab(value)">+</button>
             </li>
           </ul>
         </div>
@@ -74,15 +74,20 @@ export default class Home extends Vue {
   }
   removeTab(tab: number) {
     const tabToRemove = this.currentTabs.findIndex(CTab => CTab === tab);
-    this.currentTabs.splice(tabToRemove, 1);
-    if (tabToRemove === this.currentTabs.length) {
-      this.$nextTick(() => {
-        this.selectTab(this.currentTabs[this.currentTabs.length - 1]);
-      });
+    if (this.currentTabs.length === 1) {
+      this.currentTabs = [];
+      this.selectTab(null);
+    } else {
+      this.currentTabs.splice(tabToRemove, 1);
+      this.selectTab(
+        tabToRemove === this.currentTabs.length
+          ? this.currentTabs[this.currentTabs.length - 1]
+          : this.currentTabs[tabToRemove]
+      );
     }
   }
-  selectTab(tab: number) {
-    console.log("setting to ", this.currentTabs[this.currentTabs.length - 1]);
+  selectTab(tab: number | null) {
+    console.log("setting to ", tab);
     this.selectedTab = tab;
   }
   isMobile() {
@@ -107,12 +112,12 @@ export default class Home extends Vue {
   justify-content: space-around;
   header {
     height: 60px;
-    background-color: grey;
   }
   .main-section {
-    flex: 1;
+    height: calc(100vh - 60px);
     display: flex;
     .left {
+      overflow: scroll;
       border: solid 1px grey;
       width: 10%;
       .events {
@@ -130,46 +135,49 @@ export default class Home extends Vue {
     }
     .right {
       width: 90%;
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
+      margin-top: -35px;
       .tabs {
-        margin-top: -40px;
-        background-color: white;
         border: 0;
-        border-radius: 10px;
+        border-radius: 20px;
         * {
-          color: grey;
+          color: rgba(255, 255, 255, 0.849);
         }
         > ul {
           list-style: none;
           display: flex;
           > li {
-            height: 40px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            margin-right: 1px;
+            height: 35px;
             display: flex;
-            margin-left: 5px;
             padding: 0 10px;
             justify-content: center;
             align-items: center;
             text-overflow: ellipsis;
             overflow: hidden;
-            justify-content: start;
+            justify-content: flex-start;
             position: relative;
-            &:hover {
-              background-color: #c2c2c2;
-              border-radius: 10px;
-              cursor: pointer;
-            }
             .overflow {
               margin: 0;
               white-space: nowrap;
-              margin-right: 5px;
+              margin-right: 10px;
             }
             .close {
               position: absolute;
-              right: 0;
+              right: 5px;
+              transform: rotate(45deg);
             }
           }
         }
       }
       .selectedTab {
+        overflow: scroll;
         .tab-content {
           margin: 20px;
           .li-data {
