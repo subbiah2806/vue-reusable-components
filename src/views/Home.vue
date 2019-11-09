@@ -16,17 +16,18 @@
       </div>
       <div class="right">
         <div class="tabs">
-          <ul>
-            <li
-              class="p p-h"
-              v-for="(value, key) in currentTabs"
-              :key="key"
-              @click="selectTab(value)"
-            >
-              <p class="overflow">{{ `Tabs of Event ${value + 1}` }}</p>
-              <button class="close" @click.stop="removeTab(value)">+</button>
-            </li>
-          </ul>
+          <button
+            class="p p-h"
+            v-for="(value, key) in currentTabs"
+            :key="key"
+            @click="e => selectTab(value, e)"
+            ref="liTabs"
+          >
+            <div class="overflow" :class="{ hideClose }">
+              <p>{{ `Tabs of Event ${value + 1}` }}</p>
+            </div>
+            <button class="close" @click.stop="removeTab(value)">+</button>
+          </button>
         </div>
         <div class="selectedTab" v-if="selectedTab !== null">
           <div class="tab-content">
@@ -63,13 +64,28 @@ export default class Home extends Vue {
   private data = data;
   private currentTabs: number[] = [];
   private selectedTab: number | null = null;
-  mounted() {
-    console.log("data", data.events.length);
+  private hideClose: boolean = false;
+  hideCloseFn() {
+    this.$nextTick(() => {
+      const liTaabs: any = this.$refs.liTabs;
+      if (Array.isArray(liTaabs)) {
+        if (liTaabs[0].clientWidth < 107) {
+          if (!this.hideClose) {
+            this.hideClose = true;
+          }
+        } else {
+          if (this.hideClose) {
+            this.hideClose = false;
+          }
+        }
+      }
+    });
   }
   addEvent(event: number) {
     if (!this.currentTabs.includes(event)) {
       this.currentTabs.push(event);
       this.selectedTab = event;
+      this.hideCloseFn();
     }
   }
   removeTab(tab: number) {
@@ -85,9 +101,9 @@ export default class Home extends Vue {
           : this.currentTabs[tabToRemove]
       );
     }
+    this.hideCloseFn();
   }
   selectTab(tab: number | null) {
-    console.log("setting to ", tab);
     this.selectedTab = tab;
   }
   isMobile() {
@@ -145,37 +161,51 @@ export default class Home extends Vue {
         * {
           color: rgba(255, 255, 255, 0.849);
         }
-        > ul {
-          list-style: none;
+        list-style: none;
+        display: flex;
+        .liExpand {
+          width: 14%;
+        }
+        > button {
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          border: 0;
+          margin-right: 1px;
+          height: 35px;
           display: flex;
-          > li {
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-            margin-right: 1px;
-            height: 35px;
-            display: flex;
-            padding: 0 10px;
-            justify-content: center;
-            align-items: center;
-            text-overflow: ellipsis;
+          padding: 0 5px 0 10px;
+          justify-content: center;
+          align-items: center;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          justify-content: flex-start;
+          display: flex;
+          &:focus {
+            flex-shrink: 0;
+          }
+          &:active {
+            flex-shrink: 0;
+          }
+          .hideClose {
+            overflow: unset !important;
+          }
+          .overflow {
             overflow: hidden;
-            justify-content: flex-start;
-            position: relative;
-            .overflow {
+            display: flex;
+            align-items: center;
+            p {
               margin: 0;
               white-space: nowrap;
-              margin-right: 10px;
             }
-            .close {
-              position: absolute;
-              right: 5px;
-              transform: rotate(45deg);
-            }
+          }
+          .close {
+            transform: rotate(45deg);
           }
         }
       }
+
       .selectedTab {
         overflow: scroll;
         .tab-content {
