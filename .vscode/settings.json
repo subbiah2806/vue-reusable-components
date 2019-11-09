@@ -1,0 +1,39 @@
+{
+	"window.zoomLevel": 0,
+	"editor.fontSize": 16,
+	"editor.largeFileOptimizations": false,
+	"git.enableSmartCommit": true,
+	"git.autofetch": true,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"editor.minimap.enabled": false,
+	"editor.gotoLocation.multiple": "goto",
+	"terminal.integrated.fontSize": 15,
+	"editor.tabSize": 2,
+	"editor.autoClosingBrackets": "always",
+	"files.trimTrailingWhitespace": true,
+	"files.trimFinalNewlines": true,
+	"editor.tabCompletion": "on",
+	"typescript.surveys.enabled": true,
+	"typescript.preferences.quoteStyle": "single",
+	"javascript.preferences.quoteStyle": "single",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.tslint": true,
+		"source.fixAll": true
+	},
+	"editor.trimAutoWhitespace": true,
+	"eslint.validate": [
+		"javascript",
+		{
+			"language": "typescript",
+			"autoFix": true
+		},
+		"javascriptreact",
+		{
+			"language": "vue",
+			"autoFix": true
+		}
+	],
+	"eslint.autoFixOnSave": true,
+}
