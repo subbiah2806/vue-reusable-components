@@ -1,6 +1,7 @@
 @mixin color-transition {
   transition: color 300ms linear;
 }
+$background: white;
 $primary: var(--md-theme-default-accent, #ff5252);
 $primary_light: #fa6f6f;
 $priamry_dark: #f72f2f;
@@ -15,6 +16,8 @@ $secondary: #000000;
   label {
     @include color-transition;
   }
+  background-color: $background;
+
   p {
     @include color-transition;
   }
@@ -22,11 +25,25 @@ $secondary: #000000;
   .p {
     background-color: $primary;
   }
+  .p-l-text {
+    color: #cac4c4;
+  }
   .p-h:hover {
     background-color: $primary_light;
   }
+  .p-h-active {
+    background-color: $background;
+    * {
+      color: black;
+    }
+  }
   .p-d {
     background-color: $priamry_dark;
+  }
+  .p-d-columns {
+    &:nth-child(odd) {
+      background-color: $priamry_dark;
+    }
   }
 
   .s {

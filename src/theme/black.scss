@@ -33,17 +33,28 @@ $secondary_text: #ffffff;
 
   * {
     @include color-transition;
-    color: $primary_text;
+    color: rgba(255, 255, 255, 0.849);
   }
 
   .p {
     background-color: $primary;
   }
+  .p-l-text {
+    color: $primary_light;
+  }
   .p-h:hover {
     background-color: $primary_light;
   }
+  .p-h-active {
+    background-color: $background;
+  }
   .p-d {
     background-color: $priamry_dark;
+  }
+  .p-d-columns {
+    &:nth-child(odd) {
+      background-color: $priamry_dark;
+    }
   }
 
   .s {

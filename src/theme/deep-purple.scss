@@ -18,7 +18,7 @@ $secondary_text: #ffffff;
     theme: light
   ));
   @import "~vue-material/dist/theme/all";
-  label {
+  * {
     @include color-transition;
     color: black;
   }
@@ -31,15 +31,28 @@ $secondary_text: #ffffff;
   }
 
   background-color: $background;
-
+  @mixin bg {
+    background-color: $background;
+  }
   .p {
     background-color: $primary;
+  }
+  .p-l-text {
+    color: $primary_light;
   }
   .p-h:hover {
     background-color: $primary_light;
   }
+  .p-h-active {
+    background-color: $background;
+  }
   .p-d {
     background-color: $priamry_dark;
+  }
+  .p-d-columns {
+    &:nth-child(odd) {
+      background-color: $priamry_dark;
+    }
   }
 
   .s {
